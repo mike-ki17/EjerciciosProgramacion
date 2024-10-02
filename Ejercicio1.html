@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mike</title>
+    <style>
+        body{
+            width: 100vw;
+            height: 100vh;
+            background-color: rgba(3, 98, 3, 0.64);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .formulario{
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        input{
+            border: none;
+            background-color: rgba(3, 97, 3, 0.122);
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px;
+            width: 300px;
+            outline: none;
+        }
+        h2{
+            font-size: 20px;
+            color: green;
+        }
+
+        #submit:hover{
+            background-color: rgba(0, 128, 0, 0.627);
+            color: #fff;
+            transition: all 1s;
+        }
+        .resultado{
+            display: none;
+            z-index: -1;
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .info{
+            padding: 40px;
+            border-radius: 15px;
+            background-color: #fff;
+            position: relative;
+        }
+        .btn-close{
+            position: absolute;
+            top: 0;
+            right: 0;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .text-resuld{
+            color: rgb(4, 205, 4);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="formulario" >
+        <h2>Formulario</h2>
+        <input class="input" type="text" id="Nombre" placeholder="Ingrese su nombre">
+        <input class="input" type="number" id="edad" placeholder="Ingrese su edad">
+        <input class="input" type="text" id="institucion" placeholder="Ingrese su institucion">
+        <input class="input" type="text" id="contacto" placeholder="Ingrese su número de contacto">
+        <input type="submit" id="submit">
+        <!-- <button class="input" id="submit">Enviar</button> -->
+    </div>
+
+    <div class="resultado" id="resultado">
+        <div class="info">
+            <svg class="btn-close" id="btn-close" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill: rgba(140, 199, 34, 1);transform: ;msFilter:;"><path d="M9.172 16.242 12 13.414l2.828 2.828 1.414-1.414L13.414 12l2.828-2.828-1.414-1.414L12 10.586 9.172 7.758 7.758 9.172 10.586 12l-2.828 2.828z"></path><path d="M12 22c5.514 0 10-4.486 10-10S17.514 2 12 2 2 6.486 2 12s4.486 10 10 10zm0-18c4.411 0 8 3.589 8 8s-3.589 8-8 8-8-3.589-8-8 3.589-8 8-8z"></path></svg>
+            <!-- <p id="info">Resultados</p> -->
+            <div id="info"><p>Resultados</p></div>
+        </div>
+    </div>
+
+    <script>
+        // let nombre, edad, universidad, contacto,email, semestre, carrera;
+        // noMbre = prompt('Ingrese su nombre: ');
+        // edad = prompt('Ingrese su edad: ');
+        // universidad = prompt('Ingrese su institucion');
+        // contacto = prompt('Ingrese su número de contacto');
+
+        // document.write(`Nombre: ${nombre}`)
+        // document.write('<br>')
+        // document.write(`Edad: ${edad}`)
+        // document.write('<br>')
+        // document.write(`Universidad: ${universidad}`)
+
+
+        let a = parseFloat(prompt('Ingresa el valor 1: '))
+        let b = parseFloat(prompt('Ingresa el valor 2: '))
+        let operacion = prompt('Operacion: 1 suma; 2 resta; 3 multiplica; 4 divide; 5 residuo')
+        operacion == 1 ?  alert(a+b) : operacion == 2 ? alert(a-b) : operacion == 3 ? alert(a*b) : operacion == 4 ? alert(a/b) : operacion == 4 ? alert(a%b) : alert('Operacion no valida')
+       
+       
+
+        let btn_close = document.getElementById('btn-close')
+        let resultados = {'Nombre': 'Null', 'Edad': 'Null', 'Institucion': 'Null', 'Contacto': 'Null'}
+        let datos = ['Nombre', 'Edad', 'Institucion', 'Contacto' ]
+        let info = document.getElementById('info')
+        let resultado = document.getElementById('resultado')
+
+        let inputs = [...document.querySelectorAll('.input')]
+        let submit =  document.getElementById('submit')
+        submit.addEventListener('click', () => {
+            resultado.style.zIndex = 1
+            for(let i = 0; i <= inputs.length-1; i++){
+                resultados[datos[i]] = inputs[i].value
+                info.innerHTML += `<p>${datos[i]}: <span class="text-resuld">${resultados[datos[i]]}</span></p>`
+            }
+            for(let i = 0; i <= inputs.length-1; i++){
+                inputs[i].value = ''
+            }
+
+        })
+        btn_close.addEventListener('click', () => {
+            resultado.style.zIndex = -1
+            info.innerHTML = ''
+        })
+
+
+
+
+    </script>
+</body>
+</html>
